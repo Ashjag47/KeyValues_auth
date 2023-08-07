@@ -1,14 +1,14 @@
-const HTTPError = require("../utils/errors/HTTPError");
+const { HTTPError } = require("../utils/errors/HTTPError");
 const { User } = require("../../database/models");
 const jwt = require("jsonwebtoken");
 
 const generateToken = async (username, password) => {
   const user = await User.findOne({ where: { username } });
   if (!user) {
-    throw new HTTPError("User not found");
+    throw new HTTPError("INVALID_CREDENTIALS", 400);
   }
   if (user.password !== password) {
-    throw new HTTPError("Password incorrect");
+    throw new HTTPError("INVALID_CREDENTIALS", 400);
   }
   const token = jwt.sign({ username, password }, "secret", {
     expiresIn: "60m",

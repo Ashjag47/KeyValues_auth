@@ -12,10 +12,14 @@ module.exports = {
       "string.empty": "INVALID_REQUEST",
     }),
 
-    password: joi.string().pattern(new RegExp(passPattern)).messages({
-      "string.empty": "INVALID_REQUEST",
-      "string.pattern.base": "INVALID_PASSWORD",
-    }),
+    password: joi
+      .string()
+      .required()
+      .pattern(new RegExp(passPattern))
+      .messages({
+        "string.empty": "INVALID_REQUEST",
+        "string.pattern.base": "INVALID_PASSWORD",
+      }),
 
     full_name: joi.string().required().messages({
       "string.empty": "INVALID_REQUEST",

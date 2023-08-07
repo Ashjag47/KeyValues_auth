@@ -38,6 +38,21 @@ const errorMessage = (message) => {
           "The provided password does not meet the requirements. Password must be at least 8 characters long and contain a mix of uppercase and lowercase letters, numbers, and special characters.",
       };
 
+    case "INVALID_CREDENTIALS":
+      return {
+        ...errorResponse,
+        code: "INVALID_CREDENTIALS",
+        message:
+          "Invalid credentials. The provided username or password is incorrect.",
+      };
+
+    case "MISSING_FIELDS":
+      return {
+        ...errorResponse,
+        code: "MISSING_FIELDS",
+        message: "Missing fields. Please provide both username and password.",
+      };
+
     case '"age" must be greater than 1':
       return {
         ...errorResponse,
