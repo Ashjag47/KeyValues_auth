@@ -18,8 +18,7 @@ const createUser = async (user) => {
     };
     return response;
   } catch (err) {
-    console.log("*****", err.errors[0].message, "*****");
-    throw new HTTPError(err.message, 400);
+    throw new HTTPError(err.errors[0].message, 400);
   }
 };
 
