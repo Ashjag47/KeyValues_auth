@@ -38,20 +38,22 @@ const errorMessage = (message) => {
           "The provided password does not meet the requirements. Password must be at least 8 characters long and contain a mix of uppercase and lowercase letters, numbers, and special characters.",
       };
 
-    case "INVALID_AGE":
+    case '"age" must be greater than 1':
       return {
         ...errorResponse,
         code: "INVALID_AGE",
         message: "Invalid age value. Age must be a positive integer.",
       };
 
-    case "GENDER_REQUIRED":
+    case '"gender" must be one of [male, female, non-binary)]':
       return {
         ...errorResponse,
         code: "GENDER_REQUIRED",
         message:
           "Gender field is required. Please specify the gender (e.g., male, female, non-binary).",
       };
+
+    // More cases can be added here as needed.
 
     default:
       return errorResponse;
@@ -67,4 +69,4 @@ class HTTPError extends Error {
   }
 }
 
-module.exports = HTTPError;
+module.exports = { HTTPError, errorMessage };
