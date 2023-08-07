@@ -14,6 +14,13 @@ const errorMessage = (message) => {
           "Invalid request. Please provide all required fields: username, email, password, full_name.",
       };
 
+    case "INVALID_TOKEN":
+      return {
+        ...errorResponse,
+        code: "INVALID_TOKEN",
+        message: "Invalid access token provided.",
+      };
+
     case "username must be unique":
       return {
         ...errorResponse,

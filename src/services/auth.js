@@ -28,6 +28,12 @@ const generateToken = async (username, password) => {
   return response;
 };
 
+const verifyToken = async (token) => {
+  const decoded = jwt.verify(token, "secret");
+  return decoded;
+};
+
 module.exports = {
   generateToken,
+  verifyToken,
 };

@@ -1,4 +1,19 @@
-const { HTTPError } = require("../utils/errors/HTTPError");
+const { string } = require("joi");
+const { HTTPError, errorMessage } = require("../utils/errors/HTTPError");
+
+const tokenValidation = (schema) => (req, res, next) => {
+  let token = "authorization" in req.headers ? req.headers.authorization : "";
+  token = token.replace(/^Bearer\s/, "");
+  try {
+    const { value, error } = schema.validate(token);
+    if (error) {
+      throw new HTTPError(error.message, 401);
+    }
+    next();
+  } catch (err) {
+    res.status(err.code).json({ message: "invalid token" });
+  }
+};
 
 const bodyValidation = (schema) => (req, res, next) => {
   try {
@@ -17,4 +32,4 @@ const bodyValidation = (schema) => (req, res, next) => {
   }
 };
 
-module.exports = { bodyValidation };
+module.exports = { bodyValidation, tokenValidation };

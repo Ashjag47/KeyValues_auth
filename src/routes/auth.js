@@ -11,4 +11,10 @@ router.post(
   authController.generateToken
 );
 
+router.post(
+  "/validate",
+  schemaValidation.tokenValidation(authSchema.validateToken),
+  authController.verifyToken
+);
+
 module.exports = router;

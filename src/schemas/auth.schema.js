@@ -9,4 +9,8 @@ module.exports = {
       "string.empty": "MISSING_FIELDS",
     }),
   }),
+
+  validateToken: joi.string().required().messages({
+    "string.empty": "INVALID_TOKEN",
+  }),
 };
